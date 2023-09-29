@@ -1,20 +1,5 @@
 version: "2"
 services:
-  anthias-wifi-connect:
-    image: ghcr.io/fabianvolkers/anthias-wifi-connect:latest-x86
-    depends_on:
-      - anthias-viewer
-    environment:
-      PORTAL_LISTENING_PORT: 8000
-      CHECK_CONN_FREQ: 10
-      PORTAL_SSID: 'Anthias WiFi Connect'
-      DBUS_SYSTEM_BUS_ADDRESS: 'unix:path=/run/dbus/system_bus_socket'
-    network_mode: host
-    privileged: true
-    volumes:
-      - type: bind
-        source: /run/dbus/system_bus_socket
-        target: /run/dbus/system_bus_socket
 
   anthias-server:
     image: ghcr.io/fabianvolkers/anthias-server:latest-x86
