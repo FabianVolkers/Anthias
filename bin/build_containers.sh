@@ -143,19 +143,14 @@ for container in ${SERVICES[@]}; do
         --cache-to "type=local,dest=/tmp/.buildx-cache" \
         --platform "$TARGET_PLATFORM" \
         -f "docker/Dockerfile.$container" \
-        -t "ghcr.io/fabianvolkers/srly-ose-$container:latest" \
         -t "ghcr.io/fabianvolkers/anthias-$container:latest" \
         -t "anthias-$container:latest" \
         -t "ghcr.io/fabianvolkers/anthias-$container:$DOCKER_TAG" \
         -t "ghcr.io/fabianvolkers/anthias-$container:$GIT_SHORT_HASH-$BOARD" \
-        -t "ghcr.io/fabianvolkers/srly-ose-$container:$DOCKER_TAG" \
-        -t "ghcr.io/fabianvolkers/srly-ose-$container:$GIT_SHORT_HASH-$BOARD" .
 
     # Push if the push flag is set and not cross compiling
     if [[ ( -n "${PUSH+x}" && -z "${CROSS_COMPILE+x}" ) ]]; then
-        docker push "ghcr.io/fabianvolkers/srly-ose-$container:$DOCKER_TAG"
         docker push "ghcr.io/fabianvolkers/anthias-$container:$DOCKER_TAG"
         docker push "ghcr.io/fabianvolkers/anthias-$container:$GIT_SHORT_HASH-$BOARD"
-        docker push "ghcr.io/fabianvolkers/srly-ose-$container:$GIT_SHORT_HASH-$BOARD"
     fi
 done
