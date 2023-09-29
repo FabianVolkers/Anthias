@@ -2,6 +2,7 @@
 # vim: ft=dockerfile
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG}
+LABEL org.opencontainers.image.source="https://github.com/FabianVolkers/Anthias"
 
 RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && \
