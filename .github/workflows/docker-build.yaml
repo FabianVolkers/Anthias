@@ -64,7 +64,7 @@ jobs:
 
       - name: Build Containers
         run: |
-          #export PUSH=1
+          export PUSH=1
           ./bin/build_containers.sh
 
   # balena:
